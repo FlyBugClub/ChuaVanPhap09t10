@@ -22,7 +22,7 @@ namespace VanPhap.View
         }
 
 
-        string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Demo.accdb";
+        string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Manager1.mdb";
         OleDbConnection sqlCon = null;
         //Hàm mở kết nối db
         public void OpenConection()
@@ -65,8 +65,10 @@ namespace VanPhap.View
             // txt_tuoi.Text = canChi;
 
 
+            
+            int currentYear = DateTime.Now.Year;
             List<string> cuong = new List<string>();
-            for (int i = 1900; i < 2023; i++)
+            for (int i = 1900; i < currentYear+1; i++)
             {
                 int canIndex = (i - 4) % 10;
                 int chiIndex = (i - 4) % 12;
@@ -205,7 +207,7 @@ namespace VanPhap.View
 
                     switch (SaoIndex)
                     {
-                        case 10: Sao = saoNu[0]; txt_sao.Text = Sao; break;
+                        case 10: Sao = saoNam[0]; txt_sao.Text = Sao; break;
                         case 19: Sao = saoNam[0]; txt_sao.Text = Sao; break;
                         case 28: Sao = saoNam[0]; txt_sao.Text = Sao; break;
                         case 37: Sao = saoNam[0]; txt_sao.Text = Sao; break;
@@ -340,7 +342,17 @@ namespace VanPhap.View
                         string sao = reader.GetString(5);
                         string han = reader.GetString(6);*/
                         string namSinh = reader["NamSinh"].ToString();
-                        double tuoi = 2023 - double.Parse(namSinh);
+                        int currentYear = DateTime.Now.Year;
+                        double tuoi = currentYear - double.Parse(namSinh);
+                        if (tuoi == 0)
+                        {
+                            tuoi = 1;
+                            
+                        }
+                        else
+                        {
+                            tuoi = tuoi;
+                        }
 
                         ListViewItem lvi = new ListViewItem(reader["HoTenUni"].ToString());
 
@@ -398,6 +410,28 @@ namespace VanPhap.View
                     comboBox_gioitinh.SelectedItem = "Nữ";
                 }
                 //txt_birthday.Text = namsinh;
+                string selectedValue = txt_tuoi.Text;
+                string[] arr = selectedValue.Split(' ');
+                int tuoi = int.Parse(arr[0]);
+                string selectedValue1 = comboBox_gioitinh.SelectedItem.ToString();
+
+
+                // Xác định sao
+
+                //tinhSaoNam(selectedValue1, tuoi);
+                if (txt_tuoi.Text.Equals("") || comboBox_gioitinh.Text.Equals(""))
+                {
+                    MessageBox.Show("hi");
+                }
+                else
+                {
+                    string selectedValue2 = txt_tuoi.Text;
+                    string[] arr1 = selectedValue2.Split(' ');
+                    int tuoi1 = int.Parse(arr[0]);
+
+                    string selectedValue11 = comboBox_gioitinh.SelectedItem.ToString();
+                    tinhSaoNam(selectedValue11, tuoi);
+                }
 
 
 
@@ -451,7 +485,7 @@ namespace VanPhap.View
 
                 string hoten = string.Join(" ", words);
                 ///////////////////
-                string inputPhapDanh = txt_name.Text;
+                string inputPhapDanh = txt_nickname.Text;
                 string[] words1 = inputPhapDanh.Split(' ');
 
                 for (int i = 0; i < words1.Length; i++)
@@ -506,7 +540,7 @@ namespace VanPhap.View
 
         private void comboBox_NamSinh_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int namHienTai = 2023;
+            
             int currentYear = DateTime.Now.Year;
             string selectedValue = comboBox_NamSinh.SelectedItem.ToString();
 
@@ -541,14 +575,22 @@ namespace VanPhap.View
 
         private void comboBox_NamSinh_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            int namHienTai = 2023;
+            int currentYear = DateTime.Now.Year;
             string selectedValue = comboBox_NamSinh.SelectedItem.ToString();
 
             string[] arr = selectedValue.Split(' ');
             int nam = int.Parse(arr[0]);
-            int tuoi = namHienTai - nam;
-            txt_tuoi.Text = tuoi.ToString() + " tuổi";
-
+            int tuoi = currentYear - nam;
+            
+            if (tuoi == 0)
+            {
+                tuoi = 1;
+                txt_tuoi.Text = tuoi.ToString() + " tuổi";
+            }
+            else
+            {
+                txt_tuoi.Text = tuoi.ToString() + " tuổi";
+            }
             if (txt_tuoi.Text.Equals(""))
             {
 
@@ -566,28 +608,7 @@ namespace VanPhap.View
 
         private void comboBox_gioitinh_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            string selectedValue = txt_tuoi.Text;
-            string[] arr = selectedValue.Split(' ');
-            int tuoi = int.Parse(arr[0]);
-            string selectedValue1 = comboBox_gioitinh.SelectedItem.ToString();
-
-
-            // Xác định sao
-
-            tinhSaoNam(selectedValue1, tuoi);
-            if (txt_tuoi.Text.Equals("") || comboBox_gioitinh.Text.Equals(""))
-            {
-
-            }
-            else
-            {
-                string selectedValue2 = txt_tuoi.Text;
-                string[] arr1 = selectedValue2.Split(' ');
-                int tuoi1 = int.Parse(arr[0]);
-
-                string selectedValue11 = comboBox_gioitinh.SelectedItem.ToString();
-                tinhSaoNam(selectedValue11, tuoi);
-            }
+            
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
@@ -601,6 +622,16 @@ namespace VanPhap.View
         }
 
         private void btn_xacnhan_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lsv_danhsach_cauan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_name_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -22,7 +22,7 @@ namespace VanPhap.View
 {
     public partial class SoCauAn : Form
     {
-        string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Demo.accdb";
+        string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Manager1.mdb";
         OleDbConnection sqlCon = null;
         //Hàm mở kết nối db
         public void OpenConection()
@@ -58,6 +58,7 @@ namespace VanPhap.View
         {
             InitializeComponent();
             myListView = lsv_danhsach_cauan;
+            this.KeyDown += new KeyEventHandler(Form_KeyDown);
         }
 
         
@@ -117,7 +118,17 @@ namespace VanPhap.View
                         string sao = reader.GetString(5);
                         string han = reader.GetString(6);*/
                         string namSinh = reader["NamSinh"].ToString();
-                        double tuoi = 2023 - double.Parse(namSinh);
+                        int currentYear = DateTime.Now.Year;
+                        double tuoi = currentYear - double.Parse(namSinh);
+                        if (tuoi == 0)
+                        {
+                            tuoi = 1;
+                            
+                        }
+                        else
+                        {
+                            tuoi = tuoi;
+                        }
                         ListViewItem lvi = new ListViewItem(reader["HoTenUni"].ToString());
 
                         
@@ -135,7 +146,7 @@ namespace VanPhap.View
 
 
                 }
-                connection.Close();
+                
             }
         }
 
@@ -451,8 +462,24 @@ namespace VanPhap.View
             public String NguyenQuan { get; set; }
             public String DiaChi { get; set; }
         }
-
-
+        
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.P)
+            {
+                // Thực hiện hành động khi người dùng ấn Ctrl+P
+                // Ví dụ: Gọi một phương thức hoặc thực hiện công việc cụ thể
+                btn_print_Click(sender,e);
+                e.Handled = true; // Ngăn chặn sự kiện KeyDown tiếp theo
+            }
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                // Thực hiện hành động khi người dùng ấn Ctrl+S
+                // Ví dụ: Lưu tài liệu, thực hiện công việc lưu, hoặc gọi một phương thức lưu tài liệu
+                button3_Click(sender, e);
+                e.Handled = true; // Ngăn chặn sự kiện KeyDown tiếp theo
+            }
+        }
         public void btn_print_Click(object sender, EventArgs e)
         {
             List<string> user = new List<string>();
@@ -652,14 +679,14 @@ namespace VanPhap.View
             txt_loaiso.Text = loaiso;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        public void button3_Click(object sender, EventArgs e)
         {
             TimChuBai tcb = new TimChuBai();
             tcb.loaiso = loaiso;
             tcb.Show();
         }
 
-        private void btn_ThemSo_Click(object sender, EventArgs e)
+        public void btn_ThemSo_Click(object sender, EventArgs e)
         {
             ChuBai cb = new ChuBai();
             cb.Show();
@@ -675,11 +702,12 @@ namespace VanPhap.View
             HienDanhSach();
         }
 
-        private void button1_Click_3(object sender, EventArgs e)
+        public void button1_Click_3(object sender, EventArgs e)
         {
-            if(txt_name.Text.Equals(""))
+            string test = txt_name.Text;
+            if (test.Equals(""))
             {
-
+                MessageBox.Show("hehe");
             }
             else
             {
@@ -752,5 +780,45 @@ namespace VanPhap.View
         {
             btn_ThemSo.Focus();
         }
+
+        private void btn_cap_nhat_sao_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT * FROM tblChiTietSo"; // Thay TableName bằng tên bảng hoặc truy vấn của bạn
+            using (OleDbConnection connection = new OleDbConnection(strCon))
+            {
+                connection.Open();
+                using (OleDbCommand command = new OleDbCommand(query, connection))
+                {
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Đọc dữ liệu từ từng cột trong mỗi dòng
+                            double tuoi = reader.GetDouble(6); // Thay 0 bằng số chỉ mục của cột
+                            double id = reader.GetDouble(1);
+                            string ten = reader.GetString(2);
+
+                           
+
+                            // Thực hiện các thao tác bạn mutốn với dữ liệu ở đây
+                            
+                            MessageBox.Show($"{id} - {tuoi} - {ten}");
+                        }
+                    }
+                }
+            }    
+            
+        }
+        private void txt_name_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Kiểm tra nếu người dùng đã nhấn tổ hợp phím Ctrl + P
+            if (e.Control && e.KeyCode == Keys.P)
+            {
+                // Thực hiện hành động bạn muốn khi Ctrl + P được nhấn
+                // Ví dụ:
+                MessageBox.Show("Ctrl + P được nhấn");
+            }
+        }
     }
+   
 }

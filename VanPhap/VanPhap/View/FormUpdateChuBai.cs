@@ -24,7 +24,7 @@ namespace VanPhap.View
 
 
 
-        string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Demo.accdb";
+        string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Manager1.mdb";
         OleDbConnection sqlCon = null;
         //Hàm mở kết nối db
         public void OpenConection()
@@ -54,14 +54,16 @@ namespace VanPhap.View
 
       public void HienDanhSach()
         {
+            txt_name.Text = name;
+            txt_diachi.Text = diachi;
+            txt_nguyenquan.Text = nguyenquan;
 
             txt_name_kiemtra.Text = name;
             txt_id1.Text = idso.ToString();
             string idsoo = txt_id1.Text;
             
             string namee = txt_name.Text;
-            txt_diachi.Text = diachi;
-            txt_nguyenquan.Text = nguyenquan;
+            
             string nguyenquann = txt_nguyenquan.Text;
             string nameKiemTra = txt_name_kiemtra.Text;
             
@@ -80,31 +82,34 @@ namespace VanPhap.View
                 {
                     while (reader.Read())
                     {
-                        /*string hoten = reader.GetString(0);
-                        string phapdanh1 = reader.GetString(1);
-                        double gioitinh = reader.GetDouble(2);
-                        double namsinh = reader.GetDouble(3);
-                        string amlich = reader.GetString(4);
-                        string sao = reader.GetString(5);
-                        string han = reader.GetString(6);*/
-                        string namSinh = reader["NamSinh"].ToString();
-                        string gioiTinh=  reader["NamNu"].ToString();
-                        txt_name.Text =  reader["HoTenUni"].ToString();
-                        txt_nickname.Text = reader["PhapDanhUni"].ToString();
-                     
+                        double gioitinh = reader.GetDouble(0);
+                        string gioitinhString = gioitinh.ToString();// ép kiểu gioitinh
+                        double namsinh = reader.GetDouble(1);
+                        string namsinhString = namsinh.ToString(); // ép kiểu namsinh
+                        string hoten = reader.GetString(2);
+                        string phapdanh1 = reader.GetString(3);
+                        txt_name.Text = hoten;
+                        txt_nickname.Text = phapdanh1;
+                        /* string gioiTinh = reader["NamNu"].ToString();
+                         string namSinh = reader["NamSinh"].ToString();
+                         txt_name.Text = reader["HoTenUni"].ToString();
+
+
+                        txt_nickname.Text = reader["PhapDanhUni"].ToString();*/
+
 
 
                         for (int i = 0; i < comboBox_NamSinh.Items.Count; i++)
                         {
                             string comboBoxItemText = comboBox_NamSinh.Items[i].ToString();
 
-                            if (comboBoxItemText.Contains(namSinh))
+                            if (comboBoxItemText.Contains(namsinhString))
                             {
                                 comboBox_NamSinh.SelectedIndex = i;
                                 break;
                             }
                         }
-                        if (gioiTinh.Equals("1"))
+                        if (gioitinhString.Equals("1"))
                         {
                             comboBox_GioiTinh.SelectedItem = "Nam";
 
@@ -119,7 +124,7 @@ namespace VanPhap.View
 
                     }
                 }
-                connection.Close();
+               
             }
             string query1 = "Select DiaChiUni, NguyenQuanUni from tblphattu  where id = @idso";
             using (OleDbConnection connection = new OleDbConnection(strCon))
@@ -139,7 +144,7 @@ namespace VanPhap.View
                     }
 
                 }
-                connection.Close();
+                
             }
 
 
@@ -298,7 +303,7 @@ namespace VanPhap.View
                         MessageBox.Show("Cập nhật thành công");
                         this.Close();
                     }
-                    connection.Close();
+                   
 
                 }
 
@@ -491,7 +496,7 @@ namespace VanPhap.View
 
                     switch (SaoIndex)
                     {
-                        case 10: Sao = saoNu[0]; txt_sao.Text = Sao; break;
+                        case 10: Sao = saoNam[0]; txt_sao.Text = Sao; break;
                         case 19: Sao = saoNam[0]; txt_sao.Text = Sao; break;
                         case 28: Sao = saoNam[0]; txt_sao.Text = Sao; break;
                         case 37: Sao = saoNam[0]; txt_sao.Text = Sao; break;

@@ -15,7 +15,7 @@ namespace VanPhap.View
 {
     public partial class NguoiNhanCauAn : Form
     {
-        string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Demo.accdb";
+        string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Manager1.mdb";
         OleDbConnection sqlCon = null;
         //Hàm mở kết nối db
 
@@ -341,7 +341,7 @@ namespace VanPhap.View
 
                     switch (SaoIndex)
                     {
-                        case 10: Sao = saoNu[0]; txt_sao.Text = Sao; break;
+                        case 10: Sao = saoNam[0]; txt_sao.Text = Sao; break;
                         case 19: Sao = saoNam[0]; txt_sao.Text = Sao; break;
                         case 28: Sao = saoNam[0]; txt_sao.Text = Sao; break;
                         case 37: Sao = saoNam[0]; txt_sao.Text = Sao; break;
@@ -470,14 +470,22 @@ namespace VanPhap.View
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int namHienTai = 2023;
+          
             int currentYear = DateTime.Now.Year;
             string selectedValue = comboBox_namsinh.SelectedItem.ToString();
 
             string[] arr = selectedValue.Split(' ');
             int nam = int.Parse(arr[0]);
             int tuoi = currentYear - nam;
-            txt_Tuoi.Text = tuoi.ToString() + " tuổi";
+            if (tuoi == 0)
+            {
+                tuoi = 1;
+                txt_Tuoi.Text = tuoi.ToString() + " tuổi";
+            }
+            else
+            {
+                txt_Tuoi.Text = tuoi.ToString() + " tuổi";
+            }
 
             if (txt_Tuoi.Text.Equals("") || cbb_gioitinh.Text.Equals(""))
             {
@@ -524,9 +532,9 @@ namespace VanPhap.View
             string[] can = { "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý" };
             string[] chi = { "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi" };
             txt_id_so.Text = DataFromForm11;
-
+            int currentYear = DateTime.Now.Year;
             List<string> cuong = new List<string>();
-            for (int i = 1900; i < 2023; i++)
+            for (int i = 1900; i < currentYear+1; i++)
             {
                 int canIndex = (i - 4) % 10;
                 int chiIndex = (i - 4) % 12;

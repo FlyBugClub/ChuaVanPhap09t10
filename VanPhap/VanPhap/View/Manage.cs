@@ -20,11 +20,31 @@ namespace VanPhap
 
     public partial class form_manage : Form
     {
+        private SoCauAn socauanForm;
         private Form activeForm;
         public form_manage()
         {
             InitializeComponent();
             MaximizeBox = false;
+            socauanForm = new SoCauAn();
+            this.KeyDown += new KeyEventHandler(Form_KeyDown);
+        }
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.P)
+            {
+                // Thực hiện hành động khi người dùng ấn Ctrl+P
+                // Ví dụ: Gọi một phương thức hoặc thực hiện công việc cụ thể
+                socauanForm.btn_print_Click(sender, e);
+                e.Handled = true; // Ngăn chặn sự kiện KeyDown tiếp theo
+            }
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                // Thực hiện hành động khi người dùng ấn Ctrl+S
+                // Ví dụ: Lưu tài liệu, thực hiện công việc lưu, hoặc gọi một phương thức lưu tài liệu
+                socauanForm.button3_Click(sender,e);
+                e.Handled = true; // Ngăn chặn sự kiện KeyDown tiếp theo
+            }
         }
 
         private void Form_SoThongTin_Load(object sender, EventArgs e)
@@ -306,6 +326,21 @@ namespace VanPhap
         private void lbl_Title_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public void btn_ThemSo_Click(object sender, EventArgs e)
+        {
+            socauanForm.btn_ThemSo_Click(sender, e);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            socauanForm.button3_Click(sender, e);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            socauanForm.button1_Click_3(sender, e);
         }
     } 
 }

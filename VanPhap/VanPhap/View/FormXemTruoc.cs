@@ -17,7 +17,7 @@ namespace VanPhap.View
         {
             InitializeComponent();
         }
-        string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Demo.accdb";
+        string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Manager1.mdb";
         OleDbConnection sqlCon = null;
         //Hàm mở kết nối db
         public void OpenConection()
@@ -78,8 +78,17 @@ namespace VanPhap.View
                         string sao = reader.GetString(5);
                         string han = reader.GetString(6);*/
                         string namSinh = reader["NamSinh"].ToString();
-                        double tuoi = 2023 - double.Parse(namSinh);
-
+                        int currentYear = DateTime.Now.Year;
+                        double tuoi = currentYear - double.Parse(namSinh);
+                        if (tuoi == 0)
+                        {
+                            tuoi = 1;
+                           
+                        }
+                        else
+                        {
+                            tuoi = tuoi;
+                        }
                         ListViewItem lvi = new ListViewItem(reader["HoTenUni"].ToString());
 
 
@@ -112,7 +121,9 @@ namespace VanPhap.View
 
         private void btn_xacnhan_Click(object sender, EventArgs e)
         {
+            
             SoCauAn form1 = Application.OpenForms.OfType<SoCauAn>().FirstOrDefault();
+            
             TimChuBai form2 = Application.OpenForms.OfType<TimChuBai>().FirstOrDefault();
             form1.id = id;
             form1.chubai = chubai;

@@ -1,4 +1,8 @@
-﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+﻿using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using DocumentFormat.OpenXml.Vml;
+using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +22,8 @@ namespace VanPhap.View
     {
         private Form activeForm;
 
-        string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Demo.accdb";
+        string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Manager1.mdb";
+        //string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Demo.accdb";
         OleDbConnection sqlCon = null;
         //Hàm mở kết nối db
         public void OpenConection()
@@ -116,7 +121,7 @@ namespace VanPhap.View
                                 // Không có dòng nào được xóa
                                 MessageBox.Show("Không có dòng nào được xóa");
                             }
-                            connection.Close();
+                           
                         }
                     }//Dong if
 
@@ -140,16 +145,46 @@ namespace VanPhap.View
         private void btn_huy_bo_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
+            
+            }
         public string loaiso { get; set; }
         private void btn_tim_kiem_Click(object sender, EventArgs e)
         {
 
             if (txt_name.Text.Equals("") && txt_diachi.Text.Equals("") && txt_nguyenquan.Text.Equals(""))
             {
-                //MessageBox.Show("Vui lòng tìm kiếm theo các cách sau\nNhập tên chủ bái || Nhập địa chỉ cần tìm || Nhập nguyên quán");
+                OpenConection();
+
+                OleDbCommand sqlCmd = new OleDbCommand();
+                sqlCmd.CommandType = System.Data.CommandType.Text;
+
+                //sqlCmd.CommandText = "SELECT ID, HoTenUni,  PhapDanhUni,  DiaChiUni,  NguyenQuan FROM tblphattu1 where HoTenUni  LIKE '%" + name+"%'";
+                sqlCmd.CommandText = "SELECT ID, HoTenUni,  PhapDanhUni,  DiaChiUni,  NguyenQuanUni FROM tblPhatTu";
+                sqlCmd.Connection = sqlCon;
+
+                OleDbDataReader reader = sqlCmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    double idSo = reader.GetDouble(0);
+                    string hoten = reader[1].ToString(); // Đọc giá trị và chuyển đổi thành chuỗi
+                    string phapdanh = reader[2].ToString();
+                    string diachi = reader[3].ToString();
+                    string nguyenquan = reader[4].ToString();
+
+                    //txt_id_chu_bai.Text = idSo.ToString();
+                    ListViewItem lvi = new ListViewItem(idSo.ToString());
+                    lvi.SubItems.Add(hoten);
+                    //lvi.SubItems.Add(phapdanh);
+                    lvi.SubItems.Add(diachi);
+                    lvi.SubItems.Add(nguyenquan);
+
+                    lsv_timchubai.Items.Add(lvi);
+                }
             }
             else
+            
             {
                 lsv_timchubai.Items.Clear();
                 string name = txt_name.Text;
@@ -162,8 +197,8 @@ namespace VanPhap.View
                 OleDbCommand sqlCmd = new OleDbCommand();
                 sqlCmd.CommandType = System.Data.CommandType.Text;
 
-                //sqlCmd.CommandText = "SELECT ID, HoTenUni,  PhapDanhUni,  DiaChiUni,  NguyenQuanUni FROM tblPhatTu where HoTenUni  LIKE '%"+name+"%'";
-                sqlCmd.CommandText = "SELECT ID, HoTenUni,  PhapDanhUni,  DiaChiUni,  NguyenQuanUni FROM tblPhatTu where HoTenUni  LIKE '%" + name + "%'  AND DiaChiUni LIKE '%" + diachi1 + "%' AND NguyenQuanUni LIKE '%" + nguyenquan1 + "%' AND PhapDanhUni LIKE '%" + phapdanh1 + "%'  ORDER BY ID DESC ";
+                sqlCmd.CommandText = "SELECT ID, HoTenUni,  PhapDanhUni,  DiaChiUni,  NguyenQuanUni FROM tblphattu where HoTenUni  LIKE '%" + name+ "%'ORDER BY ID DESC";
+                //sqlCmd.CommandText = "SELECT ID, HoTenUni,  PhapDanhUni,  DiaChiUni,  NguyenQuanUni FROM tblPhatTu where HoTenUni  LIKE '%" + name + "%'  AND DiaChiUni LIKE '%" + diachi1 + "%' AND NguyenQuanUni LIKE '%" + nguyenquan1 + "%' AND PhapDanhUni LIKE '%" + phapdanh1 + "%'  ";
                 sqlCmd.Connection = sqlCon;
 
                 OleDbDataReader reader = sqlCmd.ExecuteReader();
@@ -172,10 +207,10 @@ namespace VanPhap.View
                 {
 
                     double idSo = reader.GetDouble(0);
-                    string hoten = reader.GetString(1);
-                    string phapdanh = reader.GetString(2);
-                    string diachi = reader.GetString(3);
-                    string nguyenquan = reader.GetString(4);
+                    string hoten = reader[1].ToString(); // Đọc giá trị và chuyển đổi thành chuỗi
+                    string phapdanh = reader[2].ToString();
+                    string diachi = reader[3].ToString();
+                    string nguyenquan = reader[4].ToString();
 
                     //txt_id_chu_bai.Text = idSo.ToString();
                     ListViewItem lvi = new ListViewItem(idSo.ToString());
@@ -186,10 +221,8 @@ namespace VanPhap.View
 
                     lsv_timchubai.Items.Add(lvi);
                 }
-                CloseConection();
             }
         }
-
         public string IDTuUpdate { get;}
         public void timKiem()
         {
@@ -212,9 +245,38 @@ namespace VanPhap.View
 
                 if (txt_name.Text.Equals("") && txt_diachi.Text.Equals("") && txt_nguyenquan.Text.Equals(""))
                 {
-                    MessageBox.Show("Vui lòng tìm kiếm theo các cách sau\nNhập tên chủ bái || Nhập địa chỉ cần tìm || Nhập nguyên quán");
+                    OpenConection();
+
+                    OleDbCommand sqlCmd = new OleDbCommand();
+                    sqlCmd.CommandType = System.Data.CommandType.Text;
+
+                    //sqlCmd.CommandText = "SELECT ID, HoTenUni,  PhapDanhUni,  DiaChiUni,  NguyenQuan FROM tblphattu1 where HoTenUni  LIKE '%" + name+"%'";
+                    sqlCmd.CommandText = "SELECT ID, HoTenUni,  PhapDanhUni,  DiaChiUni,  NguyenQuanUni FROM tblPhatTu";
+                    sqlCmd.Connection = sqlCon;
+
+                    OleDbDataReader reader = sqlCmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+
+                        double idSo = reader.GetDouble(0);
+                        string hoten = reader[1].ToString(); // Đọc giá trị và chuyển đổi thành chuỗi
+                        string phapdanh = reader[2].ToString();
+                        string diachi = reader[3].ToString();
+                        string nguyenquan = reader[4].ToString();
+
+                        //txt_id_chu_bai.Text = idSo.ToString();
+                        ListViewItem lvi = new ListViewItem(idSo.ToString());
+                        lvi.SubItems.Add(hoten);
+                        //lvi.SubItems.Add(phapdanh);
+                        lvi.SubItems.Add(diachi);
+                        lvi.SubItems.Add(nguyenquan);
+
+                        lsv_timchubai.Items.Add(lvi);
+                    }
                 }
                 else
+
                 {
                     lsv_timchubai.Items.Clear();
                     string name = txt_name.Text;
@@ -227,8 +289,8 @@ namespace VanPhap.View
                     OleDbCommand sqlCmd = new OleDbCommand();
                     sqlCmd.CommandType = System.Data.CommandType.Text;
 
-                    //sqlCmd.CommandText = "SELECT ID, HoTenUni,  PhapDanhUni,  DiaChiUni,  NguyenQuanUni FROM tblPhatTu where HoTenUni  LIKE '%"+name+"%'";
-                    sqlCmd.CommandText = "SELECT ID, HoTenUni,  PhapDanhUni,  DiaChiUni,  NguyenQuanUni FROM tblPhatTu where HoTenUni  LIKE '%" + name + "%'  AND DiaChiUni LIKE '%" + diachi1 + "%' AND NguyenQuanUni LIKE '%" + nguyenquan1 + "%' AND PhapDanhUni LIKE '%" + phapdanh1 + "%'  ORDER BY ID DESC";
+                    sqlCmd.CommandText = "SELECT ID, HoTenUni,  PhapDanhUni,  DiaChiUni,  NguyenQuanUni FROM tblphattu where HoTenUni  LIKE '%" + name + "%'ORDER BY ID DESC";
+                    //sqlCmd.CommandText = "SELECT ID, HoTenUni,  PhapDanhUni,  DiaChiUni,  NguyenQuanUni FROM tblPhatTu where HoTenUni  LIKE '%" + name + "%'  AND DiaChiUni LIKE '%" + diachi1 + "%' AND NguyenQuanUni LIKE '%" + nguyenquan1 + "%' AND PhapDanhUni LIKE '%" + phapdanh1 + "%'  ";
                     sqlCmd.Connection = sqlCon;
 
                     OleDbDataReader reader = sqlCmd.ExecuteReader();
@@ -237,10 +299,10 @@ namespace VanPhap.View
                     {
 
                         double idSo = reader.GetDouble(0);
-                        string hoten = reader.GetString(1);
-                        string phapdanh = reader.GetString(2);
-                        string diachi = reader.GetString(3);
-                        string nguyenquan = reader.GetString(4);
+                        string hoten = reader[1].ToString(); // Đọc giá trị và chuyển đổi thành chuỗi
+                        string phapdanh = reader[2].ToString();
+                        string diachi = reader[3].ToString();
+                        string nguyenquan = reader[4].ToString();
 
                         //txt_id_chu_bai.Text = idSo.ToString();
                         ListViewItem lvi = new ListViewItem(idSo.ToString());
@@ -252,8 +314,8 @@ namespace VanPhap.View
                         lsv_timchubai.Items.Add(lvi);
                     }
                 }
-            }
 
+            }
         }
 
         //private void OpentChildForm(Form childForm, object btnSender)
@@ -291,8 +353,8 @@ namespace VanPhap.View
                 form2.diachi = diachi;
                 form2.nguyenquan = nguyenquan;*/
                 //OpentChildForm(new View.SoCauAn(), null);
-                if (loaiso.Equals("CauAn"))
-                {
+                /*if (loaiso.Equals("CauAn"))
+                {*/
                     FormXemTruoc form1 = new FormXemTruoc();
                     if (form1 != null)
                     {
@@ -305,8 +367,8 @@ namespace VanPhap.View
                         
                         form1.Show();
                     }
-                }
-                else
+                /*}*/
+               /* else
                 {
                     SoCauSieu form2 = Application.OpenForms.OfType<SoCauSieu>().FirstOrDefault();
                     if (form2 != null)
@@ -319,7 +381,7 @@ namespace VanPhap.View
                         form2.UpdateData("Cuong");
                         this.Close();
                     }
-                }
+                }*/
                 
 
 
@@ -375,8 +437,8 @@ namespace VanPhap.View
                 form2.diachi = diachi;
                 form2.nguyenquan = nguyenquan;*/
                 //OpentChildForm(new View.SoCauAn(), null);
-                if (loaiso.Equals("CauAn"))
-                {
+                //if (loaiso.Equals("CauAn"))
+                //{
                     FormXemTruoc form1 = new FormXemTruoc();
                     if (form1 != null)
                     {
@@ -389,8 +451,8 @@ namespace VanPhap.View
 
                         form1.Show();
                     }
-                }
-                else
+              //  }
+              /*  else
                 {
                     SoCauSieu form2 = Application.OpenForms.OfType<SoCauSieu>().FirstOrDefault();
                     if (form2 != null)
@@ -403,7 +465,7 @@ namespace VanPhap.View
                         form2.UpdateData("Cuong");
                         this.Close();
                     }
-                }
+                }*/
 
 
 

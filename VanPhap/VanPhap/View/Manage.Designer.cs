@@ -48,6 +48,8 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.icon = new System.Windows.Forms.ImageList(this.components);
             this.pnl_Menu = new System.Windows.Forms.Panel();
+            this.btn_timso = new System.Windows.Forms.Button();
+            this.btn_ThemSo = new System.Windows.Forms.Button();
             this.btn_SoCauSieu = new System.Windows.Forms.Button();
             this.btn_SoCauAn = new System.Windows.Forms.Button();
             this.pnl_Logo = new System.Windows.Forms.Panel();
@@ -69,8 +71,8 @@
             this.tùyChọnToolStripMenuItem});
             this.Menu.Location = new System.Drawing.Point(0, 0);
             this.Menu.Name = "Menu";
-            this.Menu.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.Menu.Size = new System.Drawing.Size(1443, 27);
+            this.Menu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.Menu.Size = new System.Drawing.Size(1924, 30);
             this.Menu.TabIndex = 19;
             this.Menu.Text = "menuStrip1";
             this.Menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Menu_ItemClicked);
@@ -82,20 +84,20 @@
             this.thoátToolStripMenuItem2});
             this.tùyChọnToolStripMenuItem.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tùyChọnToolStripMenuItem.Name = "tùyChọnToolStripMenuItem";
-            this.tùyChọnToolStripMenuItem.Size = new System.Drawing.Size(77, 23);
+            this.tùyChọnToolStripMenuItem.Size = new System.Drawing.Size(97, 26);
             this.tùyChọnToolStripMenuItem.Text = "Tùy chọn";
             // 
             // đổiMậtKhẩuToolStripMenuItem
             // 
             this.đổiMậtKhẩuToolStripMenuItem.Name = "đổiMậtKhẩuToolStripMenuItem";
-            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(159, 24);
+            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.đổiMậtKhẩuToolStripMenuItem.Text = "Đổi mật khẩu";
             this.đổiMậtKhẩuToolStripMenuItem.Click += new System.EventHandler(this.đổiMậtKhẩuToolStripMenuItem_Click);
             // 
             // thoátToolStripMenuItem2
             // 
             this.thoátToolStripMenuItem2.Name = "thoátToolStripMenuItem2";
-            this.thoátToolStripMenuItem2.Size = new System.Drawing.Size(159, 24);
+            this.thoátToolStripMenuItem2.Size = new System.Drawing.Size(198, 26);
             this.thoátToolStripMenuItem2.Text = "Thoát";
             // 
             // thoátToolStripMenuItem
@@ -115,26 +117,26 @@
             // inSớToolStripMenuItem
             // 
             this.inSớToolStripMenuItem.Name = "inSớToolStripMenuItem";
-            this.inSớToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.inSớToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.inSớToolStripMenuItem.Text = "In sớ cầu an";
             this.inSớToolStripMenuItem.Click += new System.EventHandler(this.inSớToolStripMenuItem_Click);
             // 
             // inSớCầuSiêuToolStripMenuItem
             // 
             this.inSớCầuSiêuToolStripMenuItem.Name = "inSớCầuSiêuToolStripMenuItem";
-            this.inSớCầuSiêuToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.inSớCầuSiêuToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.inSớCầuSiêuToolStripMenuItem.Text = "In sớ cầu siêu";
             // 
             // tàiKhoảnToolStripMenuItem
             // 
             this.tàiKhoảnToolStripMenuItem.Name = "tàiKhoảnToolStripMenuItem";
-            this.tàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.tàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.tàiKhoảnToolStripMenuItem.Text = "Tài khoản";
             // 
             // thoátToolStripMenuItem1
             // 
             this.thoátToolStripMenuItem1.Name = "thoátToolStripMenuItem1";
-            this.thoátToolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
+            this.thoátToolStripMenuItem1.Size = new System.Drawing.Size(197, 26);
             this.thoátToolStripMenuItem1.Text = "Thoát";
             // 
             // sơCầuAnToolStripMenuItem
@@ -151,14 +153,14 @@
             // sớCầuAnToolStripMenuItem
             // 
             this.sớCầuAnToolStripMenuItem.Name = "sớCầuAnToolStripMenuItem";
-            this.sớCầuAnToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.sớCầuAnToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
             this.sớCầuAnToolStripMenuItem.Text = "Sớ cầu an";
             this.sớCầuAnToolStripMenuItem.Click += new System.EventHandler(this.sớCầuAnToolStripMenuItem_Click);
             // 
             // sớCầuSiêuToolStripMenuItem
             // 
             this.sớCầuSiêuToolStripMenuItem.Name = "sớCầuSiêuToolStripMenuItem";
-            this.sớCầuSiêuToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.sớCầuSiêuToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
             this.sớCầuSiêuToolStripMenuItem.Text = "Sớ cầu siêu";
             this.sớCầuSiêuToolStripMenuItem.Click += new System.EventHandler(this.sớCầuSiêuToolStripMenuItem_Click);
             // 
@@ -176,7 +178,7 @@
             this.hướngDẫnSửDụngToolStripMenuItem.Image = global::VanPhap.Properties.Resources.guide_icon01;
             this.hướngDẫnSửDụngToolStripMenuItem.Name = "hướngDẫnSửDụngToolStripMenuItem";
             this.hướngDẫnSửDụngToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.hướngDẫnSửDụngToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.hướngDẫnSửDụngToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
             this.hướngDẫnSửDụngToolStripMenuItem.Text = "Hướng dẫn sử dụng";
             // 
             // imageList1
@@ -205,15 +207,53 @@
             // pnl_Menu
             // 
             this.pnl_Menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(215)))), ((int)(((byte)(210)))));
+            this.pnl_Menu.Controls.Add(this.btn_timso);
+            this.pnl_Menu.Controls.Add(this.btn_ThemSo);
             this.pnl_Menu.Controls.Add(this.btn_SoCauSieu);
             this.pnl_Menu.Controls.Add(this.btn_SoCauAn);
             this.pnl_Menu.Controls.Add(this.pnl_Logo);
             this.pnl_Menu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnl_Menu.Location = new System.Drawing.Point(0, 27);
-            this.pnl_Menu.Margin = new System.Windows.Forms.Padding(2);
+            this.pnl_Menu.Location = new System.Drawing.Point(0, 30);
+            this.pnl_Menu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnl_Menu.Name = "pnl_Menu";
-            this.pnl_Menu.Size = new System.Drawing.Size(204, 696);
+            this.pnl_Menu.Size = new System.Drawing.Size(272, 860);
             this.pnl_Menu.TabIndex = 31;
+            // 
+            // btn_timso
+            // 
+            this.btn_timso.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_timso.FlatAppearance.BorderSize = 0;
+            this.btn_timso.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_timso.ImageIndex = 4;
+            this.btn_timso.Location = new System.Drawing.Point(39, 213);
+            this.btn_timso.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_timso.Name = "btn_timso";
+            this.btn_timso.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.btn_timso.Size = new System.Drawing.Size(184, 75);
+            this.btn_timso.TabIndex = 37;
+            this.btn_timso.Text = "Tìm sớ";
+            this.btn_timso.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_timso.UseVisualStyleBackColor = true;
+            this.btn_timso.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // btn_ThemSo
+            // 
+            this.btn_ThemSo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_ThemSo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btn_ThemSo.FlatAppearance.BorderSize = 2;
+            this.btn_ThemSo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btn_ThemSo.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ThemSo.ImageIndex = 0;
+            this.btn_ThemSo.Location = new System.Drawing.Point(39, 311);
+            this.btn_ThemSo.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ThemSo.Name = "btn_ThemSo";
+            this.btn_ThemSo.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.btn_ThemSo.Size = new System.Drawing.Size(184, 72);
+            this.btn_ThemSo.TabIndex = 35;
+            this.btn_ThemSo.Text = "Thêm sớ";
+            this.btn_ThemSo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_ThemSo.UseVisualStyleBackColor = true;
+            this.btn_ThemSo.Click += new System.EventHandler(this.btn_ThemSo_Click);
             // 
             // btn_SoCauSieu
             // 
@@ -222,13 +262,15 @@
             this.btn_SoCauSieu.FlatAppearance.BorderSize = 0;
             this.btn_SoCauSieu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_SoCauSieu.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SoCauSieu.Location = new System.Drawing.Point(0, 147);
-            this.btn_SoCauSieu.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_SoCauSieu.Location = new System.Drawing.Point(0, 181);
+            this.btn_SoCauSieu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_SoCauSieu.Name = "btn_SoCauSieu";
-            this.btn_SoCauSieu.Size = new System.Drawing.Size(204, 49);
+            this.btn_SoCauSieu.Size = new System.Drawing.Size(272, 60);
             this.btn_SoCauSieu.TabIndex = 34;
+            this.btn_SoCauSieu.TabStop = false;
             this.btn_SoCauSieu.Text = "Sớ cầu siêu";
             this.btn_SoCauSieu.UseVisualStyleBackColor = false;
+            this.btn_SoCauSieu.Visible = false;
             this.btn_SoCauSieu.Click += new System.EventHandler(this.btn_SoCauSieu_Click);
             // 
             // btn_SoCauAn
@@ -238,10 +280,10 @@
             this.btn_SoCauAn.FlatAppearance.BorderSize = 0;
             this.btn_SoCauAn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_SoCauAn.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SoCauAn.Location = new System.Drawing.Point(0, 98);
-            this.btn_SoCauAn.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_SoCauAn.Location = new System.Drawing.Point(0, 121);
+            this.btn_SoCauAn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_SoCauAn.Name = "btn_SoCauAn";
-            this.btn_SoCauAn.Size = new System.Drawing.Size(204, 49);
+            this.btn_SoCauAn.Size = new System.Drawing.Size(272, 60);
             this.btn_SoCauAn.TabIndex = 33;
             this.btn_SoCauAn.Text = "Sớ cầu an";
             this.btn_SoCauAn.UseVisualStyleBackColor = false;
@@ -253,9 +295,9 @@
             this.pnl_Logo.Controls.Add(this.label2);
             this.pnl_Logo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_Logo.Location = new System.Drawing.Point(0, 0);
-            this.pnl_Logo.Margin = new System.Windows.Forms.Padding(2);
+            this.pnl_Logo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnl_Logo.Name = "pnl_Logo";
-            this.pnl_Logo.Size = new System.Drawing.Size(204, 98);
+            this.pnl_Logo.Size = new System.Drawing.Size(272, 121);
             this.pnl_Logo.TabIndex = 0;
             // 
             // label2
@@ -264,9 +306,10 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ImageIndex = 2;
             this.label2.ImageList = this.imageList2;
-            this.label2.Location = new System.Drawing.Point(60, 12);
+            this.label2.Location = new System.Drawing.Point(80, 15);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 73);
+            this.label2.Size = new System.Drawing.Size(102, 91);
             this.label2.TabIndex = 0;
             this.label2.Text = "   ";
             this.label2.Click += new System.EventHandler(this.label2_Click_1);
@@ -284,10 +327,10 @@
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(228)))), ((int)(((byte)(226)))));
             this.panel3.Controls.Add(this.lbl_Title);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(204, 27);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
+            this.panel3.Location = new System.Drawing.Point(272, 30);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1239, 98);
+            this.panel3.Size = new System.Drawing.Size(1652, 121);
             this.panel3.TabIndex = 37;
             // 
             // lbl_Title
@@ -295,34 +338,34 @@
             this.lbl_Title.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_Title.AutoSize = true;
             this.lbl_Title.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Title.Location = new System.Drawing.Point(541, 34);
-            this.lbl_Title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_Title.Location = new System.Drawing.Point(629, 42);
             this.lbl_Title.Name = "lbl_Title";
-            this.lbl_Title.Size = new System.Drawing.Size(134, 32);
+            this.lbl_Title.Size = new System.Drawing.Size(177, 42);
             this.lbl_Title.TabIndex = 0;
             this.lbl_Title.Text = "Pháp Vân";
             // 
             // pnl_Component
             // 
             this.pnl_Component.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Component.Location = new System.Drawing.Point(204, 125);
-            this.pnl_Component.Margin = new System.Windows.Forms.Padding(2);
+            this.pnl_Component.Location = new System.Drawing.Point(272, 151);
+            this.pnl_Component.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnl_Component.Name = "pnl_Component";
-            this.pnl_Component.Size = new System.Drawing.Size(1239, 598);
+            this.pnl_Component.Size = new System.Drawing.Size(1652, 739);
             this.pnl_Component.TabIndex = 38;
             // 
             // form_manage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ClientSize = new System.Drawing.Size(1443, 723);
+            this.ClientSize = new System.Drawing.Size(1924, 890);
             this.Controls.Add(this.pnl_Component);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.pnl_Menu);
             this.Controls.Add(this.Menu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.Menu;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "form_manage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -367,6 +410,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbl_Title;
         private System.Windows.Forms.Panel pnl_Component;
+        private System.Windows.Forms.Button btn_timso;
+        private System.Windows.Forms.Button btn_ThemSo;
     }
 }
 

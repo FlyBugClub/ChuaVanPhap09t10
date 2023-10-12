@@ -17,7 +17,7 @@ namespace VanPhap.View
 {
     public partial class ChuBai : Form
     {
-        string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Demo.accdb";
+        string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Z:\\Manager1.mdb";
         OleDbConnection sqlCon = null;
         //Hàm mở kết nối db
         public void OpenConection()
@@ -163,14 +163,14 @@ namespace VanPhap.View
 
                     }
                 }
-                else
+                else if (gioiTinh.Equals("Nam"))
                 {
                     string Sao;
                     int SaoIndex = tuoi + 1;
 
                     switch (SaoIndex)
                     {
-                        case 10: Sao = saoNu[0]; txt_sao.Text = Sao; break;
+                        case 10: Sao = saoNam[0]; txt_sao.Text = Sao; break;
                         case 19: Sao = saoNam[0]; txt_sao.Text = Sao; break;
                         case 28: Sao = saoNam[0]; txt_sao.Text = Sao; break;
                         case 37: Sao = saoNam[0]; txt_sao.Text = Sao; break;
@@ -266,6 +266,9 @@ namespace VanPhap.View
 
                     }
                 }
+                else
+
+                    txt_sao.Text = "Không xác định";
 
 
 
@@ -314,7 +317,7 @@ namespace VanPhap.View
 
             int currentYear = DateTime.Now.Year;
             List<string> cuong = new List<string>();
-            for (int i = 1900; i < currentYear; i++)
+            for (int i = 1900; i < currentYear+1; i++)
             {
                 int canIndex = (i - 4) % 10;
                 int chiIndex = (i - 4) % 12;
@@ -367,9 +370,9 @@ namespace VanPhap.View
                         string query = "INSERT INTO tblPhatTu (ID, HoTenUni,  PhapDanhUni,  DiaChiUni,  NguyenQuanUni)  VALUES (?,?,?,?,?)";
                         double id = double.Parse(txt_id1.Text) + 1;
 
-                        
+
                         txt_id1.Text = id.ToString();
-                       
+
                         ////
                         //////////////////////////////
                         string inputName = txt_name.Text;
@@ -444,17 +447,7 @@ namespace VanPhap.View
                             int rowsAffected = command.ExecuteNonQuery();
                             // Kiểm tra số dòng bị ảnh hưởng
                         }
-                        SoCauAn form1 = Application.OpenForms.OfType<SoCauAn>().FirstOrDefault();
-                        if (form1 != null)
-                        {
-                            form1.id = txt_id1.Text;
-                            form1.chubai = hoten;
-                            form1.phapdanh = phapdanh;
-                            form1.diachi = diachi;
-                            form1.nguyenquan = nguyenquan;
-                            form1.UpdateData("Cuong");
-
-                        }
+                        
                         string query2 = "INSERT INTO tblSo (ID, IDChuBai)  VALUES (?,?)";
                         double idd = double.Parse(txt_id1.Text);
                         // Tạo đối tượng Command và liên kết với Connection
@@ -505,22 +498,36 @@ namespace VanPhap.View
                             // Kiểm tra số dòng bị ảnh hưởng
 
                         }
+                        SoCauAn form1 = Application.OpenForms.OfType<SoCauAn>().FirstOrDefault();
+                        if (form1 != null)
+                        {
+                            form1.id = txt_id1.Text;
+                            form1.chubai = hoten;
+                            form1.phapdanh = phapdanh;
+                            form1.diachi = diachi;
+                            form1.nguyenquan = nguyenquan;
+                            form1.UpdateData("Cuong");
+                            form1.Show();
+                            this.Close();
+
+                        }
                     }
                     catch (OleDbException ex)
                     {
                         MessageBox.Show("Lỗi khi thêm dữ liệu vào cơ sở dữ liệu: " + ex.Message);
                     }
-                    
+
                 }
-                
-                
-                
-                
+
+
+
+
             }
-           
-            this.Close();
+
+
             
-            
+
+
         }
 
         private void txt_birthday1_TextChanged(object sender, EventArgs e)
@@ -542,7 +549,16 @@ namespace VanPhap.View
             string[] arr = selectedValue.Split(' ');
             int nam = int.Parse(arr[0]);
             int tuoi = currentYear - nam;
-            txt_Tuoi.Text = tuoi.ToString() + " tuổi";
+            if(tuoi == 0)
+            {
+                tuoi = 1;
+                txt_Tuoi.Text = tuoi.ToString() + " tuổi";
+            }
+            else
+            {
+                txt_Tuoi.Text = tuoi.ToString() + " tuổi";
+            }
+           
 
             if (txt_Tuoi.Text.Equals("") || comboBox_GioiTinh.Text.Equals(""))
             {
@@ -601,6 +617,66 @@ namespace VanPhap.View
         private void ChuBai_Shown(object sender, EventArgs e)
         {
             txt_name.Focus();
+        }
+
+        private void btn_update_Click(object sender, EventArgs e)
+        {
+
+            string query = "SELECT id, idso, namsinh, namnu, Sao, HoTenUni, idso from tblchitietso"; // Thay TableName bằng tên bảng hoặc truy vấn của bạn
+            using (OleDbConnection connection = new OleDbConnection(strCon))
+            {
+                connection.Open();
+                using (OleDbCommand command = new OleDbCommand(query, connection))
+                {
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Đọc dữ liệu từ từng cột trong mỗi dòng
+                            double namSinh = reader.GetDouble(2); // Thay 0 bằng số chỉ mục của cột
+                            double idSo = reader.GetDouble(1);
+                            double id = reader.GetDouble(0);
+                            string ten = reader.GetString(5);
+                            double gioiTinh = reader.GetDouble(3);
+                            string gioiTinh1;
+                            if (gioiTinh == 2)
+                                gioiTinh1 = "Nữ";
+                            else if (gioiTinh == 1)
+                            {
+                                gioiTinh1 = "Nam";
+
+                            }
+                            else gioiTinh1 = "0";
+
+                            int currentYear = DateTime.Now.Year;
+                            int namSinhInt = (int)namSinh;
+                            int tuoi = currentYear - namSinhInt;
+                            // Thực hiện các thao tác bạn mutốn với dữ liệu ở đây
+
+                            tinhSaoNam(gioiTinh1, tuoi);
+                            string sao = txt_sao.Text;
+                            string updateQuery = "UPDATE tblChiTietSo SET Sao = ? WHERE HoTenUni = ? AND id = ? AND idso = ? AND NamSinh = ? And NamNu = ?";
+
+                            using (OleDbCommand updateCommand = new OleDbCommand(updateQuery, connection))
+                            {
+                                updateCommand.Parameters.AddWithValue("?", sao); // Thay newValueForSao bằng giá trị mới cho cột Sao
+                                
+                                updateCommand.Parameters.AddWithValue("?", ten); // Thay id bằng giá trị ID của dòng cần cập nhật
+                                updateCommand.Parameters.AddWithValue("?", id);
+                                updateCommand.Parameters.AddWithValue("?", idSo);
+                                updateCommand.Parameters.AddWithValue("?", namSinh);
+                                updateCommand.Parameters.AddWithValue("?", gioiTinh);
+
+                                updateCommand.ExecuteNonQuery();
+                                
+                            }
+                       
+                        }
+                    }
+                }
+            }
+
+            MessageBox.Show("done");
         }
     }
 }
