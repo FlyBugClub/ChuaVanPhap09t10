@@ -473,7 +473,7 @@ namespace VanPhap.View
           
             int currentYear = DateTime.Now.Year;
             string selectedValue = comboBox_namsinh.SelectedItem.ToString();
-
+            textBox1.Text = selectedValue;
             string[] arr = selectedValue.Split(' ');
             int nam = int.Parse(arr[0]);
             int tuoi = currentYear - nam;
@@ -557,6 +557,40 @@ namespace VanPhap.View
         private void NguoiNhanCauAn_Shown(object sender, EventArgs e)
         {
             txt_name.Focus();
+        }
+
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            string searchText = textBox1.Text;
+
+            // Lọc và hiển thị các mục phù hợp
+            comboBox_namsinh.Items.Clear();
+
+            // Xác định can và chi
+            string[] can = { "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý" };
+            string[] chi = { "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi" };
+
+            // In kết quả
+            int currentYear = DateTime.Now.Year;
+            List<string> cuong = new List<string>();
+            for (int i = 1900; i < currentYear + 1; i++)
+            {
+                int canIndex = (i - 4) % 10;
+                int chiIndex = (i - 4) % 12;
+                string canChi = can[canIndex] + " " + chi[chiIndex];
+                cuong.Add(i.ToString() + " " + canChi);
+            }
+
+            foreach (var item in cuong)
+            {
+                if (item.Contains(searchText))
+                {
+                    comboBox_namsinh.Items.Add(item);
+                }
+            }
+
+            // Mở danh sách thả xuống để hiển thị kết quả lọc
+            comboBox_namsinh.DroppedDown = true;
         }
 
 

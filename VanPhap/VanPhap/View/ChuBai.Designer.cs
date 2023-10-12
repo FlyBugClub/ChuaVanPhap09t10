@@ -56,6 +56,7 @@
             this.comboBox_GioiTinh = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btn_update = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.pnl_Form.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -229,6 +230,7 @@
             // 
             this.pnl_Form.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.pnl_Form.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnl_Form.Controls.Add(this.textBox1);
             this.pnl_Form.Controls.Add(this.label1);
             this.pnl_Form.Controls.Add(this.txt_gioitinh_1);
             this.pnl_Form.Controls.Add(this.label2);
@@ -329,6 +331,7 @@
             this.txt_Tuoi.Size = new System.Drawing.Size(360, 42);
             this.txt_Tuoi.TabIndex = 41;
             this.txt_Tuoi.TabStop = false;
+            this.txt_Tuoi.TextChanged += new System.EventHandler(this.txt_Tuoi_TextChanged);
             // 
             // comboBox_NamSinh
             // 
@@ -409,6 +412,14 @@
             this.btn_update.Visible = false;
             this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(235, 236);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(345, 22);
+            this.textBox1.TabIndex = 47;
+            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
+            // 
             // ChuBai
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -459,5 +470,6 @@
         private System.Windows.Forms.TextBox txt_gioitinh_1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_update;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
