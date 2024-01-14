@@ -525,7 +525,7 @@ namespace VanPhap.View
 
         private void NguoiNhanCauAn_Load_2(object sender, EventArgs e)
         {
-            cbb_gioitinh.SelectedIndex = 0;
+           
             comboBox_namsinh.DropDownHeight = comboBox_namsinh.ItemHeight * 14;// nhảy 12 số combobox không được xóa !!!!!!
             string[] can = { "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý" };
             string[] chi = { "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi" };

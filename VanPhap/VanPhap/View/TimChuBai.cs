@@ -58,9 +58,9 @@ namespace VanPhap.View
 
         private async void button3_Click(object sender, EventArgs e)
         {
-            if (txt_name.Text.Equals("1"))
+            if (txt_name.Text.Equals(""))
             {
-                MessageBox.Show("Chủ bái đang trống!\nVui lòng chọn một chủ bái bên dưới để xóa!");
+                
 
             }
             else
@@ -119,7 +119,7 @@ namespace VanPhap.View
                             else
                             {
                                 // Không có dòng nào được xóa
-                                MessageBox.Show("Không có dòng nào được xóa");
+                              //  MessageBox.Show("Không có dòng nào được xóa");
                             }
                            
                         }
@@ -127,7 +127,7 @@ namespace VanPhap.View
 
                     else
                     {
-                        MessageBox.Show("Vui lòng chọn một người bên dưới để xóa!");
+                        //MessageBox.Show("Vui lòng chọn một người bên dưới để xóa!");
 
                     }
                 }

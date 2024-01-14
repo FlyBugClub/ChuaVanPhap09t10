@@ -294,7 +294,7 @@ namespace VanPhap.View
 
         private void ChuBai_Load(object sender, EventArgs e)
         {
-            comboBox_GioiTinh.SelectedIndex = 0;
+           
             txt_name.Focus();
             //if (txt_name.Text.Equals(""))
             //{
