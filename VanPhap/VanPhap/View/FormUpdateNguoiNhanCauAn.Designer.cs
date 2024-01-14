@@ -53,6 +53,7 @@
             this.txt_sao = new System.Windows.Forms.TextBox();
             this.txt_idchubai = new System.Windows.Forms.TextBox();
             this.pnl_Form = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox_gioitinh = new System.Windows.Forms.ComboBox();
             this.comboBox_NamSinh = new System.Windows.Forms.ComboBox();
             this.txt_gioitinh = new System.Windows.Forms.TextBox();
@@ -63,7 +64,6 @@
             this.txt_update = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btn_cancel = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pnl_Form.SuspendLayout();
             this.pnl_list.SuspendLayout();
@@ -312,6 +312,17 @@
             this.pnl_Form.Size = new System.Drawing.Size(1012, 205);
             this.pnl_Form.TabIndex = 65;
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(172, 129);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(279, 42);
+            this.textBox1.TabIndex = 3;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
+            this.textBox1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox1_PreviewKeyDown);
+            // 
             // comboBox_gioitinh
             // 
             this.comboBox_gioitinh.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -340,6 +351,7 @@
             this.comboBox_NamSinh.Name = "comboBox_NamSinh";
             this.comboBox_NamSinh.Size = new System.Drawing.Size(305, 42);
             this.comboBox_NamSinh.TabIndex = 3;
+            this.comboBox_NamSinh.TabStop = false;
             this.comboBox_NamSinh.SelectedIndexChanged += new System.EventHandler(this.comboBox_NamSinh_SelectedIndexChanged_1);
             // 
             // txt_gioitinh
@@ -449,14 +461,6 @@
             this.btn_cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(172, 134);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(256, 22);
-            this.textBox1.TabIndex = 45;
-            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
             // 
             // contextMenuStrip1
             // 

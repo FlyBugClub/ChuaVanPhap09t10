@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUpdateChuBai));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pnl_Form = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.txt_name_kiemtra = new System.Windows.Forms.TextBox();
             this.txt_sao = new System.Windows.Forms.TextBox();
             this.txt_gioi_tinh = new System.Windows.Forms.TextBox();
@@ -55,7 +56,6 @@
             this.txt_nickname = new System.Windows.Forms.TextBox();
             this.btn_update = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.pnl_Form.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,16 +100,27 @@
             this.pnl_Form.Controls.Add(this.lbl_NickName);
             this.pnl_Form.Controls.Add(this.txt_nickname);
             this.pnl_Form.Location = new System.Drawing.Point(13, 14);
-            this.pnl_Form.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnl_Form.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_Form.Name = "pnl_Form";
             this.pnl_Form.Size = new System.Drawing.Size(629, 463);
             this.pnl_Form.TabIndex = 68;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(235, 230);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(318, 42);
+            this.textBox1.TabIndex = 5;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
+            this.textBox1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox1_PreviewKeyDown);
             // 
             // txt_name_kiemtra
             // 
             this.txt_name_kiemtra.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_name_kiemtra.Location = new System.Drawing.Point(131, 391);
-            this.txt_name_kiemtra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_name_kiemtra.Margin = new System.Windows.Forms.Padding(4);
             this.txt_name_kiemtra.Name = "txt_name_kiemtra";
             this.txt_name_kiemtra.Size = new System.Drawing.Size(12, 42);
             this.txt_name_kiemtra.TabIndex = 48;
@@ -122,7 +133,7 @@
             this.txt_sao.Enabled = false;
             this.txt_sao.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_sao.Location = new System.Drawing.Point(235, 389);
-            this.txt_sao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_sao.Margin = new System.Windows.Forms.Padding(4);
             this.txt_sao.Name = "txt_sao";
             this.txt_sao.ReadOnly = true;
             this.txt_sao.Size = new System.Drawing.Size(345, 42);
@@ -136,7 +147,7 @@
             this.txt_gioi_tinh.Enabled = false;
             this.txt_gioi_tinh.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_gioi_tinh.Location = new System.Drawing.Point(213, 391);
-            this.txt_gioi_tinh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_gioi_tinh.Margin = new System.Windows.Forms.Padding(4);
             this.txt_gioi_tinh.Name = "txt_gioi_tinh";
             this.txt_gioi_tinh.Size = new System.Drawing.Size(12, 42);
             this.txt_gioi_tinh.TabIndex = 46;
@@ -159,7 +170,7 @@
             // 
             this.txt_gioitinh_1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_gioitinh_1.Location = new System.Drawing.Point(192, 393);
-            this.txt_gioitinh_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_gioitinh_1.Margin = new System.Windows.Forms.Padding(4);
             this.txt_gioitinh_1.Name = "txt_gioitinh_1";
             this.txt_gioitinh_1.Size = new System.Drawing.Size(12, 42);
             this.txt_gioitinh_1.TabIndex = 45;
@@ -185,7 +196,7 @@
             this.txt_Tuoi.Enabled = false;
             this.txt_Tuoi.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_Tuoi.Location = new System.Drawing.Point(235, 336);
-            this.txt_Tuoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_Tuoi.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Tuoi.Name = "txt_Tuoi";
             this.txt_Tuoi.ReadOnly = true;
             this.txt_Tuoi.Size = new System.Drawing.Size(345, 42);
@@ -196,7 +207,7 @@
             // 
             this.txt_id.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_id.Location = new System.Drawing.Point(152, 391);
-            this.txt_id.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_id.Margin = new System.Windows.Forms.Padding(4);
             this.txt_id.Name = "txt_id";
             this.txt_id.Size = new System.Drawing.Size(9, 42);
             this.txt_id.TabIndex = 30;
@@ -209,17 +220,18 @@
             this.comboBox_NamSinh.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_NamSinh.FormattingEnabled = true;
             this.comboBox_NamSinh.Location = new System.Drawing.Point(235, 230);
-            this.comboBox_NamSinh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_NamSinh.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_NamSinh.Name = "comboBox_NamSinh";
             this.comboBox_NamSinh.Size = new System.Drawing.Size(345, 42);
             this.comboBox_NamSinh.TabIndex = 5;
+            this.comboBox_NamSinh.TabStop = false;
             this.comboBox_NamSinh.SelectedIndexChanged += new System.EventHandler(this.comboBox_NamSinh_SelectedIndexChanged);
             // 
             // txt_id1
             // 
             this.txt_id1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_id1.Location = new System.Drawing.Point(171, 393);
-            this.txt_id1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_id1.Margin = new System.Windows.Forms.Padding(4);
             this.txt_id1.Name = "txt_id1";
             this.txt_id1.Size = new System.Drawing.Size(12, 42);
             this.txt_id1.TabIndex = 36;
@@ -294,7 +306,7 @@
             // 
             this.txt_nguyenquan.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_nguyenquan.Location = new System.Drawing.Point(235, 124);
-            this.txt_nguyenquan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_nguyenquan.Margin = new System.Windows.Forms.Padding(4);
             this.txt_nguyenquan.Name = "txt_nguyenquan";
             this.txt_nguyenquan.Size = new System.Drawing.Size(345, 42);
             this.txt_nguyenquan.TabIndex = 3;
@@ -303,7 +315,7 @@
             // 
             this.txt_diachi.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_diachi.Location = new System.Drawing.Point(235, 177);
-            this.txt_diachi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_diachi.Margin = new System.Windows.Forms.Padding(4);
             this.txt_diachi.Name = "txt_diachi";
             this.txt_diachi.Size = new System.Drawing.Size(345, 42);
             this.txt_diachi.TabIndex = 4;
@@ -324,7 +336,7 @@
             // 
             this.txt_name.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_name.Location = new System.Drawing.Point(235, 18);
-            this.txt_name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_name.Margin = new System.Windows.Forms.Padding(4);
             this.txt_name.Name = "txt_name";
             this.txt_name.Size = new System.Drawing.Size(345, 42);
             this.txt_name.TabIndex = 1;
@@ -345,7 +357,7 @@
             // 
             this.txt_nickname.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_nickname.Location = new System.Drawing.Point(235, 71);
-            this.txt_nickname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_nickname.Margin = new System.Windows.Forms.Padding(4);
             this.txt_nickname.Name = "txt_nickname";
             this.txt_nickname.Size = new System.Drawing.Size(345, 42);
             this.txt_nickname.TabIndex = 2;
@@ -383,14 +395,6 @@
             this.btn_cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(235, 236);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(229, 22);
-            this.textBox1.TabIndex = 49;
-            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
             // 
             // FormUpdateChuBai
             // 

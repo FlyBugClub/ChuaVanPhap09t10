@@ -43,6 +43,8 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.txt_id = new System.Windows.Forms.TextBox();
             this.pnl_Form = new System.Windows.Forms.Panel();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox_namsinh = new System.Windows.Forms.ComboBox();
             this.cbb_gioitinh = new System.Windows.Forms.ComboBox();
             this.txt_Tuoi = new System.Windows.Forms.TextBox();
@@ -52,7 +54,6 @@
             this.btn_Add = new System.Windows.Forms.Button();
             this.icon = new System.Windows.Forms.ImageList(this.components);
             this.btn_cancel = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.pnl_Form.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +61,7 @@
             // 
             this.txt_id_so.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_id_so.Location = new System.Drawing.Point(96, 233);
-            this.txt_id_so.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_id_so.Margin = new System.Windows.Forms.Padding(4);
             this.txt_id_so.Name = "txt_id_so";
             this.txt_id_so.Size = new System.Drawing.Size(12, 42);
             this.txt_id_so.TabIndex = 30;
@@ -84,7 +85,7 @@
             // 
             this.txt_name.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_name.Location = new System.Drawing.Point(172, 15);
-            this.txt_name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_name.Margin = new System.Windows.Forms.Padding(4);
             this.txt_name.Name = "txt_name";
             this.txt_name.Size = new System.Drawing.Size(305, 42);
             this.txt_name.TabIndex = 1;
@@ -97,7 +98,7 @@
             this.txt_sao.Enabled = false;
             this.txt_sao.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_sao.Location = new System.Drawing.Point(673, 129);
-            this.txt_sao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_sao.Margin = new System.Windows.Forms.Padding(4);
             this.txt_sao.Name = "txt_sao";
             this.txt_sao.ReadOnly = true;
             this.txt_sao.Size = new System.Drawing.Size(305, 42);
@@ -169,7 +170,7 @@
             // 
             this.txt_nickname.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_nickname.Location = new System.Drawing.Point(172, 75);
-            this.txt_nickname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_nickname.Margin = new System.Windows.Forms.Padding(4);
             this.txt_nickname.Name = "txt_nickname";
             this.txt_nickname.Size = new System.Drawing.Size(305, 42);
             this.txt_nickname.TabIndex = 2;
@@ -190,7 +191,7 @@
             // 
             this.txt_id.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_id.Location = new System.Drawing.Point(56, 231);
-            this.txt_id.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_id.Margin = new System.Windows.Forms.Padding(4);
             this.txt_id.Name = "txt_id";
             this.txt_id.Size = new System.Drawing.Size(11, 42);
             this.txt_id.TabIndex = 35;
@@ -202,6 +203,7 @@
             // 
             this.pnl_Form.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.pnl_Form.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnl_Form.Controls.Add(this.textBox2);
             this.pnl_Form.Controls.Add(this.textBox1);
             this.pnl_Form.Controls.Add(this.comboBox_namsinh);
             this.pnl_Form.Controls.Add(this.cbb_gioitinh);
@@ -216,10 +218,30 @@
             this.pnl_Form.Controls.Add(this.lbl_tuoi);
             this.pnl_Form.Controls.Add(this.lbl_Birthday);
             this.pnl_Form.Location = new System.Drawing.Point(16, 15);
-            this.pnl_Form.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnl_Form.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_Form.Name = "pnl_Form";
             this.pnl_Form.Size = new System.Drawing.Size(1012, 205);
             this.pnl_Form.TabIndex = 66;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(611, 176);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 22);
+            this.textBox2.TabIndex = 45;
+            this.textBox2.TabStop = false;
+            this.textBox2.Visible = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(172, 129);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(275, 42);
+            this.textBox1.TabIndex = 3;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
+            this.textBox1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox1_PreviewKeyDown);
             // 
             // comboBox_namsinh
             // 
@@ -232,6 +254,7 @@
             this.comboBox_namsinh.Name = "comboBox_namsinh";
             this.comboBox_namsinh.Size = new System.Drawing.Size(305, 42);
             this.comboBox_namsinh.TabIndex = 3;
+            this.comboBox_namsinh.TabStop = false;
             this.comboBox_namsinh.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // cbb_gioitinh
@@ -257,7 +280,7 @@
             this.txt_Tuoi.Enabled = false;
             this.txt_Tuoi.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_Tuoi.Location = new System.Drawing.Point(673, 75);
-            this.txt_Tuoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_Tuoi.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Tuoi.Name = "txt_Tuoi";
             this.txt_Tuoi.Size = new System.Drawing.Size(305, 42);
             this.txt_Tuoi.TabIndex = 43;
@@ -267,7 +290,7 @@
             // 
             this.txt_gioitinh_1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_gioitinh_1.Location = new System.Drawing.Point(19, 233);
-            this.txt_gioitinh_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_gioitinh_1.Margin = new System.Windows.Forms.Padding(4);
             this.txt_gioitinh_1.Name = "txt_gioitinh_1";
             this.txt_gioitinh_1.Size = new System.Drawing.Size(9, 42);
             this.txt_gioitinh_1.TabIndex = 44;
@@ -278,7 +301,7 @@
             // 
             this.txt_tuoiii.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_tuoiii.Location = new System.Drawing.Point(76, 233);
-            this.txt_tuoiii.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_tuoiii.Margin = new System.Windows.Forms.Padding(4);
             this.txt_tuoiii.Name = "txt_tuoiii";
             this.txt_tuoiii.Size = new System.Drawing.Size(12, 42);
             this.txt_tuoiii.TabIndex = 37;
@@ -289,7 +312,7 @@
             // 
             this.txt_id_kiemtra.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_id_kiemtra.Location = new System.Drawing.Point(37, 233);
-            this.txt_id_kiemtra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_id_kiemtra.Margin = new System.Windows.Forms.Padding(4);
             this.txt_id_kiemtra.Name = "txt_id_kiemtra";
             this.txt_id_kiemtra.Size = new System.Drawing.Size(9, 42);
             this.txt_id_kiemtra.TabIndex = 36;
@@ -344,14 +367,6 @@
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(172, 134);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(242, 22);
-            this.textBox1.TabIndex = 44;
-            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
-            // 
             // NguoiNhanCauAn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -366,7 +381,7 @@
             this.Controls.Add(this.txt_id_kiemtra);
             this.Controls.Add(this.txt_id);
             this.Controls.Add(this.txt_id_so);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "NguoiNhanCauAn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Người nhận cầu an";
@@ -403,5 +418,6 @@
         private System.Windows.Forms.ComboBox cbb_gioitinh;
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

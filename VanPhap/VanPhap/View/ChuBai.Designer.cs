@@ -45,6 +45,7 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.txt_id1 = new System.Windows.Forms.TextBox();
             this.pnl_Form = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_gioitinh_1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@
             this.comboBox_GioiTinh = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btn_update = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.pnl_Form.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -258,6 +258,17 @@
             this.pnl_Form.TabIndex = 67;
             this.pnl_Form.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Form_Paint);
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(235, 230);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(334, 42);
+            this.textBox1.TabIndex = 47;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
+            this.textBox1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox1_PreviewKeyDown);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -346,6 +357,7 @@
             this.comboBox_NamSinh.TabIndex = 5;
             this.comboBox_NamSinh.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             this.comboBox_NamSinh.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_NamSinh_KeyDown);
+            this.comboBox_NamSinh.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_NamSinh_KeyPress);
             // 
             // lbl_NamSinh
             // 
@@ -406,19 +418,12 @@
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(173, 46);
             this.btn_update.TabIndex = 68;
+            this.btn_update.TabStop = false;
             this.btn_update.Text = "update";
             this.btn_update.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_update.UseVisualStyleBackColor = true;
             this.btn_update.Visible = false;
             this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(235, 236);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(345, 22);
-            this.textBox1.TabIndex = 47;
-            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
             // 
             // ChuBai
             // 

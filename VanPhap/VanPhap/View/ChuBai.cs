@@ -45,6 +45,7 @@ namespace VanPhap.View
             InitializeComponent();
             MaximizeBox = false;
         }
+        
         public void tinhSaoNam(string gioiTinh, int tuoi)
         {
             {
@@ -293,6 +294,7 @@ namespace VanPhap.View
 
         private void ChuBai_Load(object sender, EventArgs e)
         {
+            comboBox_GioiTinh.SelectedIndex = 0;
             txt_name.Focus();
             //if (txt_name.Text.Equals(""))
             //{
@@ -362,7 +364,7 @@ namespace VanPhap.View
                                 else
                                 {
 
-                                    MessageBox.Show("Không có dữ liệu trả về từ câu truy vấn SELECT.");
+                                    //MessageBox.Show("Không có dữ liệu trả về từ câu truy vấn SELECT.");
                                 }
                             }
                         }
@@ -540,41 +542,7 @@ namespace VanPhap.View
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int currentYear = DateTime.Now.Year;
-
-            string selectedValue = comboBox_NamSinh.SelectedItem.ToString();
-            textBox1.Text = selectedValue;
-
-            string[] arr = selectedValue.Split(' ');
-            int nam = int.Parse(arr[0]);
-            int tuoi = currentYear - nam;
-            if(tuoi == 0)
-            {
-                tuoi = 1;
-                txt_Tuoi.Text = tuoi.ToString() + " tuổi";
-            }
-            else
-            {
-                txt_Tuoi.Text = tuoi.ToString() + " tuổi";
-            }
-           
-
-            if (txt_Tuoi.Text.Equals("") || comboBox_GioiTinh.Text.Equals(""))
-            {
-
-            }
-            else
-            {
-                string selectedValue1 = txt_Tuoi.Text;
-                string[] arr1 = selectedValue.Split(' ');
-                int tuoi1 = int.Parse(arr[0]);
-
-                string selectedValue11 = comboBox_GioiTinh.SelectedItem.ToString();
-                tinhSaoNam(selectedValue11, tuoi);
-            }
-        }
+       
 
         private void lbl_NamSinh_Click(object sender, EventArgs e)
         {
@@ -623,7 +591,8 @@ namespace VanPhap.View
         private void btn_update_Click(object sender, EventArgs e)
         {
 
-            string query = "SELECT id, idso, namsinh, namnu, Sao, HoTenUni, idso from tblchitietso"; // Thay TableName bằng tên bảng hoặc truy vấn của bạn
+            // string query = "SELECT id, idso, namsinh, namnu, Sao, HoTenUni, idso from tblchitietso ORDER BY id DESC;"; // Thay TableName bằng tên bảng hoặc truy vấn của bạn
+            string query = "SELECT id, idso, namsinh, namnu, Sao, HoTenUni FROM tblchitietso WHERE Sao IS NULL;"; // Thay TableName bằng tên bảng hoặc truy vấn của bạn
             using (OleDbConnection connection = new OleDbConnection(strCon))
             {
                 connection.Open();
@@ -635,6 +604,8 @@ namespace VanPhap.View
                         {
                             // Đọc dữ liệu từ từng cột trong mỗi dòng
                             double namSinh = reader.GetDouble(2); // Thay 0 bằng số chỉ mục của cột
+                            
+
                             double idSo = reader.GetDouble(1);
                             double id = reader.GetDouble(0);
                             string ten = reader.GetString(5);
@@ -684,40 +655,72 @@ namespace VanPhap.View
         {
 
         }
-
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            string searchText = textBox1.Text;
+            string searchText = textBox1.Text.ToLower(); // Chuyển đổi thành chữ thường để tìm kiếm không phân biệt hoa thường
 
-            // Lọc và hiển thị các mục phù hợp
             comboBox_NamSinh.Items.Clear();
 
-            // Xác định can và chi
             string[] can = { "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý" };
             string[] chi = { "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi" };
 
-            // In kết quả
             int currentYear = DateTime.Now.Year;
-            List<string> cuong = new List<string>();
-            for (int i = 1900; i < currentYear + 1; i++)
-            {
-                int canIndex = (i - 4) % 10;
-                int chiIndex = (i - 4) % 12;
-                string canChi = can[canIndex] + " " + chi[chiIndex];
-                cuong.Add(i.ToString() + " " + canChi);
-            }
 
-            foreach (var item in cuong)
-            {
-                if (item.Contains(searchText))
-                {
-                    comboBox_NamSinh.Items.Add(item);
-                }
-            }
+            var cuong = Enumerable.Range(1900, currentYear - 1899)
+                                  .Select(i => $"{i} {can[(i - 4) % 10]} {chi[(i - 4) % 12]}")
+                                  .Where(item => item.ToLower().Contains(searchText));
 
-            // Mở danh sách thả xuống để hiển thị kết quả lọc
+            comboBox_NamSinh.Items.AddRange(cuong.ToArray());
             comboBox_NamSinh.DroppedDown = true;
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int currentYear = DateTime.Now.Year;
+
+            if (comboBox_NamSinh.SelectedItem == null)
+                return;
+
+            string selectedValue = comboBox_NamSinh.SelectedItem.ToString();
+            textBox1.Text = selectedValue;
+
+            string[] arr = selectedValue.Split(' ');
+            if (arr.Length < 2)
+                return;
+
+            if (int.TryParse(arr[0], out int nam))
+            {
+                int tuoi = currentYear - nam + 1;
+                txt_Tuoi.Text = $"{tuoi} tuổi";
+
+                if (!string.IsNullOrEmpty(txt_Tuoi.Text) && !string.IsNullOrEmpty(comboBox_GioiTinh.Text))
+                {
+                    if (int.TryParse(arr[0], out int tuoi1))
+                    {
+                        string selectedValue11 = comboBox_GioiTinh.SelectedItem.ToString();
+                        tinhSaoNam(selectedValue11, tuoi1);
+                    }
+                }
+            }
+        }
+
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox_NamSinh_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void textBox1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+            {
+                comboBox_NamSinh.Focus(); // Chuyển focus đến ComboBox
+            }
+        }
     }
 }

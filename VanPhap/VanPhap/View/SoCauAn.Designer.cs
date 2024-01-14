@@ -388,7 +388,7 @@
             this.btn_lammoi.FlatAppearance.BorderSize = 0;
             this.btn_lammoi.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_lammoi.ImageKey = "add-icon.png";
-            this.btn_lammoi.Location = new System.Drawing.Point(230, 334);
+            this.btn_lammoi.Location = new System.Drawing.Point(238, 334);
             this.btn_lammoi.Margin = new System.Windows.Forms.Padding(0);
             this.btn_lammoi.Name = "btn_lammoi";
             this.btn_lammoi.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
@@ -425,7 +425,7 @@
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ImageIndex = 4;
-            this.button3.Location = new System.Drawing.Point(247, 334);
+            this.button3.Location = new System.Drawing.Point(238, 334);
             this.button3.Margin = new System.Windows.Forms.Padding(0);
             this.button3.Name = "button3";
             this.button3.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
@@ -518,7 +518,7 @@
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ImageIndex = 3;
-            this.button1.Location = new System.Drawing.Point(35, 334);
+            this.button1.Location = new System.Drawing.Point(43, 334);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);

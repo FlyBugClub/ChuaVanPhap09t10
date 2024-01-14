@@ -70,24 +70,30 @@ namespace VanPhap.View
             
             
             
-            string query = "select NamNu, NamSinh,  HoTenUni,  PhapDanhUni from tblchitietso where idso = @idso AND  HoTenUni  = @namee ";
+            //string query = "select NamNu, NamSinh,  HoTenUni,  PhapDanhUni from tblchitietso where idso = @idso AND  HoTenUni  = @namee ";
+            string query = "select NamNu, NamSinh,  HoTenUni,  PhapDanhUni from tblchitietso where  HoTenUni LIKE '%' + @name + '%'";
+           
+
             //sqlCmd.CommandText = "SELECT ID, HoTenUni,  PhapDanhUni,  DiaChiUni,  NguyenQuanUni FROM tblPhatTu where HoTenUni  LIKE '%"+name+"%'";
             using (OleDbConnection connection = new OleDbConnection(strCon))
             {
                 OleDbCommand command = new OleDbCommand(query, connection);
-                command.Parameters.AddWithValue("@idso", idsoo); // Truyền giá trị vào tham số @param
+                //command.Parameters.AddWithValue("@idso", idsoo); // Truyền giá trị vào tham số @param
                 command.Parameters.AddWithValue("@namee", nameKiemTra);
                 connection.Open();
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        double gioitinh = reader.GetDouble(0);
-                        string gioitinhString = gioitinh.ToString();// ép kiểu gioitinh
-                        double namsinh = reader.GetDouble(1);
-                        string namsinhString = namsinh.ToString(); // ép kiểu namsinh
-                        string hoten = reader.GetString(2);
-                        string phapdanh1 = reader.GetString(3);
+                        double? gioitinh = reader.IsDBNull(0) ? (double?)null : reader.GetDouble(0);
+                        string gioitinhString = gioitinh.HasValue ? gioitinh.ToString() : "";
+
+                        double? namsinh = reader.IsDBNull(1) ? (double?)null : reader.GetDouble(1);
+                        string namsinhString = namsinh.HasValue ? namsinh.ToString() : "";
+
+                        string hoten = reader.IsDBNull(2) ? "" : reader.GetString(2);
+                        string phapdanh1 = reader.IsDBNull(3) ? "" : reader.GetString(3);
+
                         txt_name.Text = hoten;
                         txt_nickname.Text = phapdanh1;
                         /* string gioiTinh = reader["NamNu"].ToString();
@@ -126,11 +132,13 @@ namespace VanPhap.View
                 }
                
             }
-            string query1 = "Select DiaChiUni, NguyenQuanUni from tblphattu  where id = @idso";
+            //string query1 = "Select DiaChiUni, NguyenQuanUni from tblphattu  where id = @idso";
+            string query1 = "SELECT DiaChiUni, NguyenQuanUni FROM tblphattu WHERE HotenUni LIKE '%' + @name + '%'";
+
             using (OleDbConnection connection = new OleDbConnection(strCon))
             {
                 OleDbCommand command = new OleDbCommand(query1, connection);
-                command.Parameters.AddWithValue("@idso", idsoo); // Truyền giá trị vào tham số @param
+                command.Parameters.AddWithValue("@name", namee); // Truyền giá trị vào tham số @param
                 connection.Open();
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
@@ -155,9 +163,9 @@ namespace VanPhap.View
         {
            
 
-            
 
-            
+
+
             comboBox_NamSinh.DropDownHeight = comboBox_NamSinh.ItemHeight * 14;// nhảy 12 số combobox không được xóa !!!!!!
 
             //    int year = int.Parse(comboBox1.SelectedItem.ToString());
@@ -204,7 +212,7 @@ namespace VanPhap.View
 
             if (txt_name.Text.Equals(""))
             {
-                MessageBox.Show("Chủ bái không được để trống!");
+                
             }
             else
             {
@@ -300,7 +308,7 @@ namespace VanPhap.View
                         command.Parameters.AddWithValue("?", id);
 
                         command.ExecuteNonQuery();
-                        MessageBox.Show("Cập nhật thành công");
+                       
                         this.Close();
                     }
                    
@@ -309,7 +317,8 @@ namespace VanPhap.View
 
 
 
-                string query1 = "UPDATE tblchitietso SET HoTenUni = ?, PhapDanhUni = ?, NamNu = ?, NamSinh = ?, Sao = ? WHERE IDso = ? AND HoTenUni = ?";
+                //string query1 = "UPDATE tblchitietso SET HoTenUni = ?, PhapDanhUni = ?, NamNu = ?, NamSinh = ?, Sao = ? WHERE IDso = ? AND HoTenUni = ?";
+                string query1 = "UPDATE tblchitietso SET HoTenUni = ?, PhapDanhUni = ?, NamNu = ?, NamSinh = ?, Sao = ? WHERE  HoTenUni = ?";
 
 
                 
@@ -327,7 +336,7 @@ namespace VanPhap.View
                         command.Parameters.AddWithValue("?", namnu);
                         command.Parameters.AddWithValue("?", namsinh);
                         command.Parameters.AddWithValue("?", sao);
-                        command.Parameters.AddWithValue("?", id);
+                      //  command.Parameters.AddWithValue("?", id);
                         command.Parameters.AddWithValue("?", hoTenKiemTra);
                         // Thực thi câu lệnh INSERT
                         int rowsAffected = command.ExecuteNonQuery();
@@ -618,27 +627,31 @@ namespace VanPhap.View
 
         private void comboBox_NamSinh_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int namHienTai = 2023;
             int currentYear = DateTime.Now.Year;
+
+            if (comboBox_NamSinh.SelectedItem == null)
+                return;
+
             string selectedValue = comboBox_NamSinh.SelectedItem.ToString();
             textBox1.Text = selectedValue;
+
             string[] arr = selectedValue.Split(' ');
-            int nam = int.Parse(arr[0]);
-            int tuoi = currentYear - nam;
-            txt_Tuoi.Text = tuoi.ToString() + " tuổi";
+            if (arr.Length < 2)
+                return;
 
-            if (txt_Tuoi.Text.Equals("") || comboBox_GioiTinh.Text.Equals(""))
+            if (int.TryParse(arr[0], out int nam))
             {
+                int tuoi = currentYear - nam + 1;
+                txt_Tuoi.Text = $"{tuoi} tuổi";
 
-            }
-            else
-            {
-                string selectedValue1 = txt_Tuoi.Text;
-                string[] arr1 = selectedValue.Split(' ');
-                int tuoi1 = int.Parse(arr[0]);
-
-                string selectedValue11 = comboBox_GioiTinh.SelectedItem.ToString();
-                tinhSaoNam(selectedValue11, tuoi);
+                if (!string.IsNullOrEmpty(txt_Tuoi.Text) && !string.IsNullOrEmpty(comboBox_GioiTinh.Text))
+                {
+                    if (int.TryParse(arr[0], out int tuoi1))
+                    {
+                        string selectedValue11 = comboBox_GioiTinh.SelectedItem.ToString();
+                        tinhSaoNam(selectedValue11, tuoi1);
+                    }
+                }
             }
 
         }
@@ -655,36 +668,34 @@ namespace VanPhap.View
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            string searchText = textBox1.Text;
+            string searchText = textBox1.Text.ToLower(); // Chuyển đổi thành chữ thường để tìm kiếm không phân biệt hoa thường
 
-            // Lọc và hiển thị các mục phù hợp
             comboBox_NamSinh.Items.Clear();
 
-            // Xác định can và chi
             string[] can = { "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý" };
             string[] chi = { "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi" };
 
-            // In kết quả
             int currentYear = DateTime.Now.Year;
-            List<string> cuong = new List<string>();
-            for (int i = 1900; i < currentYear + 1; i++)
-            {
-                int canIndex = (i - 4) % 10;
-                int chiIndex = (i - 4) % 12;
-                string canChi = can[canIndex] + " " + chi[chiIndex];
-                cuong.Add(i.ToString() + " " + canChi);
-            }
 
-            foreach (var item in cuong)
-            {
-                if (item.Contains(searchText))
-                {
-                    comboBox_NamSinh.Items.Add(item);
-                }
-            }
+            var cuong = Enumerable.Range(1900, currentYear - 1899)
+                                  .Select(i => $"{i} {can[(i - 4) % 10]} {chi[(i - 4) % 12]}")
+                                  .Where(item => item.ToLower().Contains(searchText));
 
-            // Mở danh sách thả xuống để hiển thị kết quả lọc
+            comboBox_NamSinh.Items.AddRange(cuong.ToArray());
             comboBox_NamSinh.DroppedDown = true;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+            {
+                comboBox_NamSinh.Focus(); // Chuyển focus đến ComboBox
+            }
         }
     }
     }
